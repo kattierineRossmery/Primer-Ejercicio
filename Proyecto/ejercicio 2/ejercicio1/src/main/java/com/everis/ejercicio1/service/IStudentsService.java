@@ -5,16 +5,17 @@ import java.util.Optional;
 
 import com.everis.ejercicio1.models.Students;
 
+
 public interface IStudentsService {
-	
-	Students registrar(Students students);
-	
-	Students modificar(Students students);
 
-	void eliminar(int id);
+  Students create(Students students);
 
-	Optional<Students> listarId(int id);
+  Students update(Students students);
 
-	List<Students> listar();
+  void delete(int id);
+  
+  Optional<Students> listId(int id);
+
+  List<Students> list();
 
 }

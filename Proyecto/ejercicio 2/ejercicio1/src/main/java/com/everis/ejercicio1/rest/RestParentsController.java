@@ -53,7 +53,7 @@ public class RestParentsController {
   @GetMapping
   public ResponseEntity<List<Parents>> listar() {
 
-    return new ResponseEntity<List<Parents>>(serv.listar(), HttpStatus.OK);
+    return new ResponseEntity<List<Parents>>(serv.list(), HttpStatus.OK);
 
   }
   
@@ -67,7 +67,7 @@ public class RestParentsController {
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Parents> insertar(@Valid @RequestBody Parents per) {
 
-    Parents perCreated = serv.registrar(per);
+    Parents perCreated = serv.create(per);
     return new ResponseEntity<Parents>(perCreated, HttpStatus.CREATED);
 
   }
@@ -81,10 +81,10 @@ public class RestParentsController {
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public String modificar(@RequestBody Parents per) {
     String mensaje = "";
-    Optional<Parents> obj = serv.listarId(per.getParent_id());
+    Optional<Parents> obj = serv.listId(per.getParentId());
 
     if (obj.isPresent()) {
-      serv.modificar(per);
+      serv.update(per);
       mensaje = "Modificado con éxito!!";
     } else {
       mensaje = "Pariente no existe";
@@ -96,7 +96,7 @@ public class RestParentsController {
   @ApiOperation(value = "Delete parent by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {
-    serv.eliminar(id);
+    serv.delete(id);
 
   }
 

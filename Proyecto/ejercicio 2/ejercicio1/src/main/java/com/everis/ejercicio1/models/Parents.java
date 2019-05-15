@@ -1,14 +1,9 @@
 package com.everis.ejercicio1.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +15,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+/**
+ * This class belongs to the entity Parents.
+ * @version 15-05-2019 v1
+ * @author kvilcave
+ *
+ */
 @ApiModel("Model Parent")
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "Parents")
 public class Parents {
 
@@ -34,7 +37,8 @@ public class Parents {
   @NotNull
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @ApiModelProperty(value = "the parent's id", required = true)
-  private int parent_id;
+  @Column(name = "parent_id")
+  private int parentId;
 
   @NotNull
   @ApiModelProperty(value = "the gender", required = true)
@@ -42,36 +46,52 @@ public class Parents {
 
   @NotNull
   @ApiModelProperty(value = "the parent's first name", required = true)
-  private String first_name;
+  @Column(name = "first_name")
+  private String firstName;
 
   @ApiModelProperty(value = "the parent's middle name", required = true)
-  private String middle_name;
+  @Column(name = "middle_name")
+  private String middleName;
 
   @ApiModelProperty(value = "the parent's last name", required = true)
-  private String last_name;
+  @Column(name = "last_name")
+  private String lastName;
 
   @ApiModelProperty(value = "the parent's details", required = true)
-  private String other_parent_details;
+  @Column(name = "other_parent_details")
+  private String otherParentDetails;
 
+  /**
+   * The entity Parents is relation One to Many to the entity Families.
+   * "parentsss" reference to the entity Families.
+   */
   @JsonIgnore
   @OneToMany(mappedBy = "parentsss")
   private List<Families> listaFamilias;
 
+  /**
+   * The entity Parents is relation One to Many to the entity FamilyMembers.
+   * "parents" reference to the entity FamilyMembers.
+   */
   @JsonIgnore
   @OneToMany(mappedBy = "parents")
   private List<FamilyMembers> listaFamilyMembers;
 
+  /**
+   * studentsParents is the new table created in 
+   * relation of many to many between 
+   * parents and students entities.
+   * 
+   * FK_Students is name the column.
+   * FK_Parents is name the column.
+   * 
+   * estudiantes reference to the entity Students.
+   */
   @JsonIgnore
-  @JoinTable(name = "studentsParents", joinColumns = @JoinColumn(name = "FK_Students", nullable = false), inverseJoinColumns = @JoinColumn(name = "FK_Parents", nullable = false))
+  @JoinTable(name = "studentsParents", joinColumns = @JoinColumn(name = "FK_Parents", 
+      referencedColumnName = "parent_id"), inverseJoinColumns = @JoinColumn(name = "FK_Students", 
+      referencedColumnName = "student_id"))
   @ManyToMany(cascade = CascadeType.ALL)
-  private List<Students> studiantes;
-
-  public void addStudents(Students stud) {
-    if (this.studiantes == null) {
-      this.studiantes = new ArrayList<>();
-    }
-
-    this.studiantes.add(stud);
-  }
+  private List<Students> estudiantes;
 
 }

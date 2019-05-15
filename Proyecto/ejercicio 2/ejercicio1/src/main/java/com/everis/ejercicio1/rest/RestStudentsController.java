@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Api(value = "Students microservice", description = "This API has a CRUD for students")
+@Api(value = "Students microservice", tags = "This API has a CRUD for students")
 @RequestMapping("/api/v1/students")
 public class RestStudentsController {
 
@@ -38,7 +38,7 @@ public class RestStudentsController {
   @GetMapping
   public ResponseEntity<List<Students>> listar() {
 
-    return new ResponseEntity<List<Students>>(serv.listar(), HttpStatus.OK);
+    return new ResponseEntity<List<Students>>(serv.list(), HttpStatus.OK);
 
   }
 
@@ -46,7 +46,7 @@ public class RestStudentsController {
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public void insertar(@RequestBody Students stu) {
-    serv.registrar(stu);
+    serv.create(stu);
   }
 
   /**
@@ -58,10 +58,10 @@ public class RestStudentsController {
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public String modificar(@RequestBody Students stu) {
     String mensaje = "";
-    Optional<Students> obj = serv.listarId(stu.getStudent_id());
+    Optional<Students> obj = serv.listId(stu.getStudentId());
 
     if (obj.isPresent()) {
-      serv.modificar(stu);
+      serv.update(stu);
       mensaje = "Modificado con éxito!!";
     } else {
       mensaje = "Pariente no existe";
@@ -73,7 +73,7 @@ public class RestStudentsController {
   @ApiOperation(value = "Delete students by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {
-    serv.eliminar(id);
+    serv.delete(id);
 
   }
 }

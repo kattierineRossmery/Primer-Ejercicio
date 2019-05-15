@@ -1,20 +1,20 @@
 package com.everis.ejercicio1.service;
 
+import com.everis.ejercicio1.models.FamilyMembers;
 import java.util.List;
 import java.util.Optional;
 
-import com.everis.ejercicio1.models.FamilyMembers;
 
 public interface IFamilyMembersService {
-	
-	FamilyMembers registrar(FamilyMembers familyMembers);
 
-	FamilyMembers modificar(FamilyMembers familyMembers);
+  FamilyMembers create(FamilyMembers familyMembers);
 
-	void eliminar(int id);
+  FamilyMembers update(FamilyMembers familyMembers);
 
-	Optional<FamilyMembers> listarId(int id);
+  void delete(int id);
 
-	List<FamilyMembers> listar();
+  Optional<FamilyMembers> listId(int id);
+
+  List<FamilyMembers> list();
 
 }

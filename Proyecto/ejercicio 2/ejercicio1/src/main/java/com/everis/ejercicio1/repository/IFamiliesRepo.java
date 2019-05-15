@@ -1,8 +1,11 @@
 package com.everis.ejercicio1.repository;
 
-import com.everis.ejercicio1.models.Families;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IFamiliesRepo extends JpaRepository<Families, Integer> {
+import com.everis.ejercicio1.models.Families;
+
+public interface IFamiliesRepo extends CrudRepository<Families, Integer> {
+  
+  
 
 }

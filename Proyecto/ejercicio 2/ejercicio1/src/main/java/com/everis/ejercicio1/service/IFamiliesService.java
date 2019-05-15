@@ -4,17 +4,23 @@ import java.util.List;
 import java.util.Optional;
 
 import com.everis.ejercicio1.models.Families;
+import com.everis.ejercicio1.models.FamilyMembers;
 
 public interface IFamiliesService {
-	
-	Families registrar(Families families);
 
-	Families modificar(Families families);
+  Families create(Families families);
 
-	void eliminar(int id);
+  public void delete(int id);
 
-	Optional<Families> listarId(int id);
+  Optional<Families> listId(int id);
 
-	List<Families> listar();
+  List<Families> list();
+  
+  List<FamilyMembers> findByFamiliesFamily_id(int familyId);
+
+//  public void update(Families families, int id);
+  public void update(Families families);
+
+
 
 }

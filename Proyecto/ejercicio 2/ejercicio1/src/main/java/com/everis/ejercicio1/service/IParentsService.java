@@ -5,15 +5,16 @@ import java.util.Optional;
 
 import com.everis.ejercicio1.models.Parents;
 
+
 public interface IParentsService {
 
-	Parents registrar(Parents parents);
+  Parents create(Parents parents);
 
-	Parents modificar(Parents parents);
+  Parents update(Parents parents);
 
-	void eliminar(int id);
+  void delete(int id);
+  
+  Optional<Parents> listId(int id);
 
-	Optional<Parents> listarId(int id);
-
-	List<Parents> listar();
+  List<Parents> list();
 }

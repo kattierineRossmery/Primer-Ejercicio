@@ -38,7 +38,7 @@ public class RestFamilyMembersController {
   @GetMapping
   public ResponseEntity<List<FamilyMembers>> listar() {
 
-    return new ResponseEntity<List<FamilyMembers>>(serv.listar(), HttpStatus.OK);
+    return new ResponseEntity<List<FamilyMembers>>(serv.list(), HttpStatus.OK);
 
   }
 
@@ -46,7 +46,7 @@ public class RestFamilyMembersController {
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
       consumes = MediaType.APPLICATION_JSON_VALUE)
   public void insertar(@RequestBody FamilyMembers famMembers) {
-    serv.registrar(famMembers);
+    serv.create(famMembers);
   }
   
   /**
@@ -58,10 +58,10 @@ public class RestFamilyMembersController {
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public String modificar(@RequestBody FamilyMembers famMembers) {
     String mensaje = "";
-    Optional<FamilyMembers> obj = serv.listarId(famMembers.getFamily_member_id());
+    Optional<FamilyMembers> obj = serv.listId(famMembers.getFamilyMemberId());
 
     if (obj.isPresent()) {
-      serv.modificar(famMembers);
+      serv.update(famMembers);
       mensaje = "Modificado con éxito!!";
     } else {
       mensaje = "Pariente no existe";
@@ -73,7 +73,7 @@ public class RestFamilyMembersController {
   @ApiOperation(value = "Delete family members by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {
-    serv.eliminar(id);
+    serv.delete(id);
 
   }
 

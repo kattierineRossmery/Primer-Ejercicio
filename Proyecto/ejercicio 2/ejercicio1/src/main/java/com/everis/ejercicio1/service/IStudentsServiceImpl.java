@@ -1,43 +1,43 @@
 package com.everis.ejercicio1.service;
 
+import com.everis.ejercicio1.models.Students;
+import com.everis.ejercicio1.repository.IStudentsRepo;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.everis.ejercicio1.models.Students;
-import com.everis.ejercicio1.repository.IStudentsRepo;
 
 @Service
-public class IStudentsServiceImpl implements IStudentsService{
-	
-	@Autowired
-	private IStudentsRepo repo;
+public class IStudentsServiceImpl implements IStudentsService {
 
-	@Override
-	public Students registrar(Students students) {
-		return repo.save(students);
-	}
+  @Autowired
+  private IStudentsRepo repo;
 
-	@Override
-	public Students modificar(Students students) {
-		return repo.save(students);
-	}
+  @Override
+  public Students create(Students students) {
+    return repo.save(students);
+  }
 
-	@Override
-	public void eliminar(int id) {
-		repo.deleteById(id);
-	}
+  @Override
+  public Students update(Students students) {
+    return repo.save(students);
+  }
 
-	@Override
-	public Optional<Students> listarId(int id) {
-		return repo.findById(id);
-	}
+  @Override
+  public void delete(int id) {
+    repo.deleteById(id);
+  }
 
-	@Override
-	public List<Students> listar() {
-		return repo.findAll();
-	}
+  @Override
+  public List<Students> list() {
+    return (List<Students>) repo.findAll();
+  }
+
+  @Override
+  public Optional<Students> listId(int id) {
+    return repo.findById(id);
+  }
 
 }

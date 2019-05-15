@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,13 +20,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
+/**
+ * Esta clase pertenece a la entidad Students.
+ * @author kvilcave
+ * @version 15-05-2019 v1
+ */
 @ApiModel("Model Students")
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "Students")
 public class Students {
 
@@ -32,7 +37,8 @@ public class Students {
   @NotNull
   @ApiModelProperty(value = "the student's id", required = true)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int student_id;
+  @Column(name = "student_id")
+  private int studentId;
 
   @NotNull
   @ApiModelProperty(value = "the gender", required = true)
@@ -40,29 +46,42 @@ public class Students {
 
   @NotNull
   @ApiModelProperty(value = "the student first name", required = true)
-  private String first_name;
+  @Column(name = "first_name")
+  private String firstName;
 
   @ApiModelProperty(value = "the student middle name", required = true)
-  private String middle_name;
+  @Column(name = "middle_name")
+  private String middleName;
 
   @NotNull
   @ApiModelProperty(value = "the student's last name", required = true)
-  private String last_name;
+  @Column(name = "last_name")
+  private String lastName;
 
   @NotNull
   @Temporal(TemporalType.DATE)
   @ApiModelProperty(value = "the student's date of birth", required = true)
-  private Date date_of_birth;
+  @Column(name = "date_of_birth")
+  private Date dateOfBirth;
 
   @ApiModelProperty(value = "the student's details", required = true)
-  private String other_student_details;
+  @Column(name = "other_student_details")
+  private String otherStudentDetails;
 
+  /**
+   * The entity Students is relation One to Many to the entity FamilyMembers.
+   * students is referenced to the entity FamilyMembers
+   */
   @JsonIgnore
   @OneToMany(mappedBy = "students")
   private List<FamilyMembers> listaFamilyMembers;
 
-  @JsonIgnore
-  @ManyToMany(mappedBy = "studiantes")
+  /**
+   * The entity Students is relation Many to Many to the entity Parents.
+   * estudiantes is referenced in the entity Parents.
+   */
+//  @JsonIgnore
+  @ManyToMany(mappedBy = "estudiantes")
   private List<Parents> parentss;
 
 }

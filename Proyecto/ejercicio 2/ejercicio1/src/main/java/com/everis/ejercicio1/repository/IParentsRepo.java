@@ -1,8 +1,9 @@
 package com.everis.ejercicio1.repository;
 
-import com.everis.ejercicio1.models.Parents;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IParentsRepo extends JpaRepository<Parents, Integer> {
+import com.everis.ejercicio1.models.Parents;
+
+public interface IParentsRepo extends CrudRepository<Parents, Integer> {
 
 }
