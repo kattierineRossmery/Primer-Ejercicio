@@ -71,7 +71,7 @@ public class RestFamiliesController {
 
   /**
    * this function is responsible for updating an existing record.
-   * @param fam
+   * @param fam the Families.
    * @return modified object.
    */
   @ApiOperation(value = "Update family")
