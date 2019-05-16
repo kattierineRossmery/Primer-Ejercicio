@@ -31,8 +31,8 @@ public class RestStudentsController {
   private IStudentsService serv;
   
   /**
-   * Listado.
-   * @return lista.
+   * List of the Students.
+   * @return list Students.
    */
   @ApiOperation(value = "Return list of family")
   @GetMapping
@@ -42,6 +42,12 @@ public class RestStudentsController {
 
   }
 
+  /**
+   * this function is responsible for making a record of a 
+   * family.
+   * @param stu
+   * @return object the Student.
+   */
   @ApiOperation(value = "Create new students")
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
       consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -50,7 +56,7 @@ public class RestStudentsController {
   }
 
   /**
-   * Modificar.
+   * this function is responsible for updating an existing record.
    * @param stu stu.
    * @return obj
    */
@@ -70,6 +76,10 @@ public class RestStudentsController {
     return mensaje;
   }
 
+  /**
+   * this function is responsible for deleting an existing record.
+   * @param id
+   */
   @ApiOperation(value = "Delete students by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {

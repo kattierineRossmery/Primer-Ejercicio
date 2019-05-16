@@ -18,7 +18,6 @@ public interface IFamiliesService {
   
   List<FamilyMembers> findByFamiliesFamily_id(int familyId);
 
-//  public void update(Families families, int id);
   public void update(Families families);
 
 

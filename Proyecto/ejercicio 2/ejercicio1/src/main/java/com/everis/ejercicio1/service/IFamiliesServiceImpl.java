@@ -1,10 +1,5 @@
 package com.everis.ejercicio1.service;
 
-import com.everis.ejercicio1.models.Families;
-import com.everis.ejercicio1.models.FamilyMembers;
-import com.everis.ejercicio1.repository.IFamiliesRepo;
-import com.everis.ejercicio1.repository.IFamilyMembersRepo;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import com.everis.ejercicio1.models.Families;
+import com.everis.ejercicio1.models.FamilyMembers;
+import com.everis.ejercicio1.repository.IFamiliesRepo;
+import com.everis.ejercicio1.repository.IFamilyMembersRepo;
 
 @Service
 public class IFamiliesServiceImpl implements IFamiliesService {
@@ -22,9 +22,6 @@ public class IFamiliesServiceImpl implements IFamiliesService {
   @Autowired
   private IFamilyMembersRepo repofamilyMembers;
   
-  
-  // private IParentsRepo repoParents;
-
   /**
    * this function is responsible for making a record of a family.
    * @return object.
@@ -39,14 +36,37 @@ public class IFamiliesServiceImpl implements IFamiliesService {
    */
   @Override
   public void update(Families families) {
+   // if(repo.)
     
     repo.findById(families.getFamilyId()).ifPresent((f) -> {
+      
    
       repo.save(families);
       
-    });
+      new ResponseEntity<Families>(HttpStatus.CREATED);
+    }
     
-    new ResponseEntity<Families>(HttpStatus.BAD_REQUEST);
+        );
+    
+    /*
+     * familyDao.findById(idFamily).ifPresent((n) -> {
+     * 
+     * familyMem.setFamily(n); if (parentOrStudent.equals("Parent")) {
+     * parentDao.findById(idPS).ifPresent((parent) -> { familyMem.setParent(parent);
+     * });
+     * 
+     * } else if (parentOrStudent.equals("Student")) {
+     * 
+     * studentDao.findById(idPS).ifPresent((student) -> {
+     * familyMem.setStudent(student); });
+     * 
+     * }
+     * 
+     * });
+     */
+    
+    
+    
     
     System.out.println("Id no existe");
   
@@ -63,10 +83,10 @@ public class IFamiliesServiceImpl implements IFamiliesService {
       repo.deleteById(id);
       
     });
-    
+    System.out.println("Id no existe");
     new ResponseEntity<Families>(HttpStatus.BAD_REQUEST);
     
-    System.out.println("Id no existe");
+   
    
   }
 
@@ -94,15 +114,8 @@ public class IFamiliesServiceImpl implements IFamiliesService {
   @Override
   public List<FamilyMembers> findByFamiliesFamily_id(int familyId) {
     
-    Families fam = new Families();
-  
-      repo.findById(fam.getFamilyId()).ifPresent((f) -> {
-       
-       repofamilyMembers.findByFamiliesFamilyId(familyId);
-       
-     });
-    
-      return (List<FamilyMembers>) new ResponseEntity<FamilyMembers>(HttpStatus.BAD_REQUEST);
+    return repofamilyMembers.findByFamiliesFamilyId(familyId);
+     
   }
 
 

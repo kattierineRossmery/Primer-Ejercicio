@@ -23,7 +23,7 @@ import lombok.Data;
 /**
  * This class belongs to the entity Families.
  * @version 15-05-2019 V1
- * @author kvilcave
+ * @author Kattierine Vilca - kvilcave
  *
  */
 @ApiModel("Model Families")

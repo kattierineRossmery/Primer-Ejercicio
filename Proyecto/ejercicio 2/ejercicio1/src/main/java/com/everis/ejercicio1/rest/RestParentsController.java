@@ -46,8 +46,8 @@ public class RestParentsController {
   private IParentsService serv;
   
   /**
-   * LISTA.
-   * @return listado.
+   * List of the Familie.
+   * @return list Parents.
    */
   @ApiOperation(value = "Return list of parents")
   @GetMapping
@@ -57,10 +57,11 @@ public class RestParentsController {
 
   }
   
-  /**
-   * Insertar.
-   * @param per parametros.
-   * @return obj.
+  /** 
+   * this function is responsible for making a record of a 
+   * Parents.
+   * @param per 
+   * @return object.
    */
   @ApiOperation(value = "Create new parent")
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
@@ -73,9 +74,9 @@ public class RestParentsController {
   }
   
   /**
-   * Modificar.
-   * @param per per.
-   * @return obj.
+   * this function is responsible for updating an existing record.
+   * @param per
+   * @return modified object.
    */
   @ApiOperation(value = "Update parent")
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -93,6 +94,10 @@ public class RestParentsController {
     return mensaje;
   }
 
+  /**
+   * this function is responsible for deleting an existing record.
+   * @param id
+   */
   @ApiOperation(value = "Delete parent by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {

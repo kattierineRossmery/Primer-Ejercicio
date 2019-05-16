@@ -31,8 +31,8 @@ public class RestFamilyMembersController {
   private IFamilyMembersService serv;
 
   /**
-   * Listar.
-   * @return listado de Family
+   * List of the FamilyMembers.
+   * @return list of the FamilyMembers.
    */
   @ApiOperation(value = "Return list of family")
   @GetMapping
@@ -42,6 +42,11 @@ public class RestFamilyMembersController {
 
   }
 
+  /**
+   * this function is responsible for making a record of a FamilyMembers.
+   * @param famMembers
+   * @return object.
+   */
   @ApiOperation(value = "Create new family")
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, 
       consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -50,9 +55,9 @@ public class RestFamilyMembersController {
   }
   
   /**
-   * Modificar.
-   * @param famMembers obj
-   * @return family.
+   * this function is responsible for updating an existing record.
+   * @param famMembers
+   * @return modified object.
    */
   @ApiOperation(value = "Update family")
   @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -70,6 +75,10 @@ public class RestFamilyMembersController {
     return mensaje;
   }
 
+  /**
+   * this function is responsible for deleting an existing record.
+   * @param id
+   */
   @ApiOperation(value = "Delete family members by id")
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {

@@ -79,8 +79,6 @@ public class RestFamiliesController {
   public void modificar(@RequestBody Families fam) {
 
     serv.update(fam);
-    
-    new ResponseEntity<Families>(HttpStatus.CREATED);
   }
 
   /**
@@ -91,7 +89,5 @@ public class RestFamiliesController {
   @DeleteMapping("/{id}")
   public void eliminar(@PathVariable("id") Integer id) {
     serv.delete(id);
-
-    new ResponseEntity<>(HttpStatus.ACCEPTED);
   }
 }
